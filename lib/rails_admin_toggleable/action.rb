@@ -26,16 +26,17 @@ module RailsAdmin
                 method = params[:method]
                 obj.send(method + '=', params[:on] == '1' ? true : false)
                 if obj.save
-                  redirect_to :back, success: "OK"
+                  flash[:success] = "OK"
                 else
-                  redirect_to :back, error: obj.errors.full_messages.join(', ')
+                  flash[:error] = obj.errors.full_messages.join(', ')
                 end
               rescue Exception => e
-                redirect_to :back, error: "Error: #{e}"
+                flash[:error] = "Error: #{e}"
               end
             else
-              redirect_to :back, error: 'No ID'
+              flash[:error] = 'No ID'
             end
+            redirect_to :back
           end
         end
 
