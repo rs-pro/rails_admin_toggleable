@@ -25,7 +25,11 @@ module RailsAdmin
                 obj = @abstract_model.model.find(params['id'])
                 method = params[:method]
                 obj.send(method + '=', params[:on] == '1' ? true : false)
-                redirect_to :back, success: "OK"
+                if obj.save
+                  redirect_to :back, success: "OK"
+                else
+                  redirect_to :back, error: obj.errors.full_messages.join(', ')
+                end
               rescue Exception => e
                 redirect_to :back, error: "Error: #{e}"
               end
