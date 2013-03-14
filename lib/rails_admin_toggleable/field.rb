@@ -7,6 +7,7 @@ module RailsAdmin
         class Toggle < RailsAdmin::Config::Fields::Base
           # Register field type for the type loader
           RailsAdmin::Config::Fields::Types::register(self)
+          include RailsAdmin::Engine.routes.url_helpers
 
           register_instance_option :view_helper do
             :check_box
@@ -15,11 +16,22 @@ module RailsAdmin
           register_instance_option :formatted_value do
             case value
               when nil
+                '-'
+              when false
+                'On'
+              when true
+                'Off'
+            end
+          end
+
+          register_instance_option :pretty_value do
+            case value
+              when nil
                 %{<span class="badge">-</span>}
               when false
-                link_to '&#x2718;'.html_safe, toggle_path(model_name: @abstract_model, method: name, on: '1'), class: 'badge badge-important'
+                bindings[:view].link_to '&#x2718;'.html_safe, toggle_path(model_name: @abstract_model, id: bindings[:object].id, method: name, on: '1'), method: :post, class: 'badge badge-important'
               when true
-                link_to '&#x2713;'.html_safe, toggle_path(model_name: @abstract_model, method: name, on: '0'), class: 'badge-success'
+                bindings[:view].link_to '&#x2713;'.html_safe, toggle_path(model_name: @abstract_model, id: bindings[:object].id, method: name, on: '0'), method: :post, class: 'badge badge-success'
             end.html_safe
           end
 

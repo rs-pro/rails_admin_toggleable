@@ -20,11 +20,17 @@ module RailsAdmin
 
         register_instance_option :controller do
           Proc.new do |klass|
-            p params
             if params['id'].present?
-              obj = @abstract_model.model.find(params['id'])
-              method = params[:method]
-              obj.send(method + '=', params[:on] == '1' ? true : false)
+              begin
+                obj = @abstract_model.model.find(params['id'])
+                method = params[:method]
+                obj.send(method + '=', params[:on] == '1' ? true : false)
+                redirect_to :back, success: "OK"
+              rescue Exception => e
+                redirect_to :back, error: "Error: #{e}"
+              end
+            else
+              redirect_to :back, error: 'No ID'
             end
           end
         end
