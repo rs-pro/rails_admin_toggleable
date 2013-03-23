@@ -26,15 +26,20 @@ module RailsAdmin
                 method = params[:method]
                 obj.send(method + '=', params[:on] == '1' ? true : false)
                 if obj.save
-                  flash[:success] = "OK"
+                  if params[:on] == '1'
+                    flash[:success] = I18n.t('admin.toggle.enabled', attr: method)
+                  else
+                    flash[:success] = I18n.t('admin.toggle.disabled', attr: method)
+                  end
+
                 else
                   flash[:error] = obj.errors.full_messages.join(', ')
                 end
               rescue Exception => e
-                flash[:error] = "Error: #{e}"
+                flash[:error] = I18n.t('admin.toggle.error', err: e.to_s)
               end
             else
-              flash[:error] = 'No ID'
+              flash[:error] = I18n.t('admin.toggle.no_id')
             end
             redirect_to :back
           end

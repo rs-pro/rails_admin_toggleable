@@ -1,0 +1,10 @@
+ru:
+  admin:
+    actions:
+      toggle:
+        title: "Toggle"
+    toggle:
+      enabled: '"%{attr}" enabled'
+      disabled: '"%{attr}" disabled'
+      error: "Error: %{err}"
+      no_id: No ID provided

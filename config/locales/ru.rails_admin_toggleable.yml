@@ -1,0 +1,10 @@
+ru:
+  admin:
+    actions:
+      toggle:
+        title: "Переключить"
+    toggle:
+      enabled: '"%{attr}" включен'
+      disabled: '"%{attr}" выключен'
+      error: "Ошибка: %{err}"
+      no_id: Не указан ID
