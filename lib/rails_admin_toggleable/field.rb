@@ -21,6 +21,8 @@ module RailsAdmin
                 'On'
               when true
                 'Off'
+              else
+                '-'
             end
           end
 
@@ -32,6 +34,8 @@ module RailsAdmin
                 bindings[:view].link_to '&#x2718;'.html_safe, toggle_path(model_name: @abstract_model, id: bindings[:object].id, method: name, on: '1'), method: :post, class: 'badge badge-important'
               when true
                 bindings[:view].link_to '&#x2713;'.html_safe, toggle_path(model_name: @abstract_model, id: bindings[:object].id, method: name, on: '0'), method: :post, class: 'badge badge-success'
+              else
+                %{<span class="badge">-</span>}
             end.html_safe
           end
 
