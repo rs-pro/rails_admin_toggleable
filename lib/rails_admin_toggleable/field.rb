@@ -27,13 +27,22 @@ module RailsAdmin
           end
 
           register_instance_option :pretty_value do
+            def g_link(fv, on, badge)
+              bindings[:view].link_to(
+                fv.html_safe,
+                toggle_path(model_name: @abstract_model, id: bindings[:object].id, method: name, on: on.to_s),
+                method: :post,
+                class: 'badge ' + badge
+              )
+            end
+
             case value
               when nil
-                %{<span class="badge">-</span>}
+                g_link('&#x2718;', 0, 'badge-important') + g_link('&#x2713;', 1, 'badge-success')
               when false
-                bindings[:view].link_to '&#x2718;'.html_safe, toggle_path(model_name: @abstract_model, id: bindings[:object].id, method: name, on: '1'), method: :post, class: 'badge badge-important'
+                g_link('&#x2718;', 1, 'badge-important')
               when true
-                bindings[:view].link_to '&#x2713;'.html_safe, toggle_path(model_name: @abstract_model, id: bindings[:object].id, method: name, on: '0'), method: :post, class: 'badge badge-success'
+                g_link('&#x2713', 0, 'badge-success')
               else
                 %{<span class="badge">-</span>}
             end.html_safe
