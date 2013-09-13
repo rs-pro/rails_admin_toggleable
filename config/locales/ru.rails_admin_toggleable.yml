@@ -7,4 +7,5 @@ ru:
       enabled: '"%{attr}" включен'
       disabled: '"%{attr}" выключен'
       error: "Ошибка: %{err}"
-      no_id: Не указан ID
+      no_id: "Не указан ID"
+      
