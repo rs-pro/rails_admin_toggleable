@@ -13,19 +13,6 @@ module RailsAdmin
             :check_box
           end
 
-          register_instance_option :formatted_value do
-            case value
-              when nil
-                '-'
-              when false
-                'On'
-              when true
-                'Off'
-              else
-                '-'
-            end
-          end
-
           register_instance_option :pretty_value do
             def g_link(fv, on, badge)
               bindings[:view].link_to(
