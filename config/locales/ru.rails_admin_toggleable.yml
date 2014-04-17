@@ -3,6 +3,18 @@ ru:
     actions:
       toggle:
         title: "Переключить"
+      bulk_enable_enabled:
+        bulk_link: 'Включить выбренные "enabled"'
+      bulk_disable_enabled:
+        bulk_link: 'Выключить выбренные "enabled"'
+      bulk_toggle_enabled:
+        bulk_link: 'Переключить выбренные "enabled"'
+      bulk_enable_deleted:
+        bulk_link: 'Включить выбренные "deleted"'
+      bulk_disable_deleted:
+        bulk_link: 'Выключить выбренные "deleted"'
+      bulk_toggle_deleted:
+        bulk_link: 'Переключить выбренные "deleted"'
     toggle:
       enabled: '"%{attr}" включен'
       disabled: '"%{attr}" выключен'

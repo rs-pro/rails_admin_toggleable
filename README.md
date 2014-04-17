@@ -37,6 +37,43 @@ Make the field you need toggleable:
       ...
     end
 
+## Bulk action usage
+
+    # Add the bulk action:
+    # define_bulk_toggle_method(type of action, model field)
+    define_bulk_toggle_method(:enable, :enabled)
+    define_bulk_toggle_method(:disable, :enabled)
+    define_bulk_toggle_method(:toggle, :enabled)
+    define_bulk_toggle_method(:enable, :deleted)
+    define_bulk_toggle_method(:disable, :deleted)
+    define_bulk_toggle_method(:toggle, :deleted)
+
+    # enable it for all or some models
+    RailsAdmin.config do |config|
+      config.actions do
+        ......
+        bulk_enable_enabled  do
+          visible do
+            ['Adder::Contest'].include? bindings[:abstract_model].model_name
+          end
+        end
+        bulk_disable_enabled  do
+          visible do
+            ['Adder::Contest'].include? bindings[:abstract_model].model_name
+          end
+        end
+        bulk_toggle_enabled  do
+          visible do
+            ['Adder::Contest'].include? bindings[:abstract_model].model_name
+          end
+        end
+        
+        bulk_enable_deleted
+        bulk_disable_deleted
+        bulk_toggle_deleted
+      end
+    end
+    
 ## Contributing
 
 1. Fork it

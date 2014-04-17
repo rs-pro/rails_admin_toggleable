@@ -3,6 +3,18 @@ en:
     actions:
       toggle:
         title: "Toggle"
+      bulk_enable_enabled:
+        bulk_link: 'Enable selected "enabled"'
+      bulk_disable_enabled:
+        bulk_link: 'Disable selected "enabled"'
+      bulk_toggle_enabled:
+        bulk_link: 'Toggle selected "enabled"'
+      bulk_enable_deleted:
+        bulk_link: 'Enable selected "deleted"'
+      bulk_disable_deleted:
+        bulk_link: 'Disable selected "deleted"'
+      bulk_toggle_deleted:
+        bulk_link: 'Toggle selected "deleted"'
     toggle:
       enabled: '"%{attr}" enabled'
       disabled: '"%{attr}" disabled'

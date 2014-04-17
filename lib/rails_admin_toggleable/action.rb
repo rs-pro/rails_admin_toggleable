@@ -19,7 +19,7 @@ module RailsAdmin
         end
 
         register_instance_option :controller do
-          Proc.new do |klass|
+          proc do
             ajax_link = Proc.new do |fv, on, badge|
               render json: {
                 text: fv.html_safe,
