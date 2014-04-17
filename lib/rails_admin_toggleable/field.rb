@@ -18,18 +18,19 @@ module RailsAdmin
               bindings[:view].link_to(
                 fv.html_safe,
                 toggle_path(model_name: @abstract_model, id: bindings[:object].id, method: name, on: on.to_s),
-                method: :post,
-                class: 'badge ' + badge
+                # method: :post,
+                class: 'badge ' + badge,
+                onclick: 'var $t = $(this); $t.html("<i class=\"fa fa-spinner fa-spin\"></i>"); $.ajax({type: "POST", url: $t.attr("href"), data: {ajax:true}, success: function(r) { $t.attr("href", r.href); $t.attr("class", r.class); $t.text(r.text); }, error: function(e) { alert(e.responseText); }}); return false;'
               )
             end
 
             case value
               when nil
-                g_link('&#x2718;', 0, 'badge-important') + g_link('&#x2713;', 1, 'badge-success')
+                g_link('✘', 0, 'badge-important') + g_link('✓', 1, 'badge-success')
               when false
-                g_link('&#x2718;', 1, 'badge-important')
+                g_link('✘', 1, 'badge-important')
               when true
-                g_link('&#x2713', 0, 'badge-success')
+                g_link('✓', 0, 'badge-success')
               else
                 %{<span class="badge">-</span>}
             end.html_safe
