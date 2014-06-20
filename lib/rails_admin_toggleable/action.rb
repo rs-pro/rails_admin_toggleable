@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module RailsAdmin
   module Config
     module Actions
@@ -66,9 +67,9 @@ module RailsAdmin
               else
                 flash[:error] = I18n.t('admin.toggle.no_id')
               end
-              
+
             end
-            
+
             redirect_to :back unless params['ajax'].present?
           end
         end
