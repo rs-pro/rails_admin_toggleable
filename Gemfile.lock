@@ -1,0 +1,17 @@
+PATH
+  remote: .
+  specs:
+    rails_admin_toggleable (0.4.1)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    rake (10.3.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler
+  rails_admin_toggleable!
+  rake
