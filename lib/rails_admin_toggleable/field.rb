@@ -20,20 +20,20 @@ module RailsAdmin
                 fv.html_safe,
                 toggle_path(model_name: @abstract_model, id: bindings[:object].id, method: name, on: on.to_s),
                 # method: :post,
-                class: 'badge ' + badge,
+                class: 'label ' + badge,
                 onclick: 'var $t = $(this); $t.html("<i class=\"fa fa-spinner fa-spin\"></i>"); $.ajax({type: "POST", url: $t.attr("href"), data: {ajax:true}, success: function(r) { $t.attr("href", r.href); $t.attr("class", r.class); $t.text(r.text); $t.parent().attr("title", r.text); }, error: function(e) { alert(e.responseText); }}); return false;'
               )
             end
 
             case value
               when nil
-                g_link('✘', 0, 'badge-important') + g_link('✓', 1, 'badge-success')
+                g_link('✘', 0, 'label-danger') + g_link('✓', 1, 'label-success')
               when false
-                g_link('✘', 1, 'badge-important')
+                g_link('✘', 1, 'label-danger')
               when true
-                g_link('✓', 0, 'badge-success')
+                g_link('✓', 0, 'label-success')
               else
-                %{<span class="badge">-</span>}
+                %{<span class="label">-</span>}
             end.html_safe
           end
 

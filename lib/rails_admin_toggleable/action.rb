@@ -25,7 +25,7 @@ module RailsAdmin
               render json: {
                 text: fv.html_safe,
                 href: toggle_path(model_name: @abstract_model, id: @object.id, method: @meth, on: on.to_s),
-                class: 'badge ' + badge,
+                class: 'label ' + badge,
               }
             end
             if params['id'].present?
@@ -36,9 +36,9 @@ module RailsAdmin
                 if @object.save
                   if params['ajax'].present?
                     if params[:on] == '1'
-                      ajax_link.call('✓', 0, 'badge-success')
+                      ajax_link.call('✓', 0, 'label-success')
                     else
-                      ajax_link.call('✘', 1, 'badge-important')
+                      ajax_link.call('✘', 1, 'label-danger')
                     end
                   else
                     if params[:on] == '1'
