@@ -36,7 +36,10 @@ module RailsAdmin
         register_instance_option :controller do
           Proc.new do |klass|
             @objects = list_entries(@model_config, :toggle)
-            @objects.update_all(@action.class.meth => true)
+            @objects.each do |obj|
+              obj.send("#{@action.class.meth}=", true)
+              obj.save!
+            end
             redirect_to :back
           end
         end
@@ -45,7 +48,10 @@ module RailsAdmin
         register_instance_option :controller do
           Proc.new do |klass|
             @objects = list_entries(@model_config, :toggle)
-            @objects.update_all(@action.class.meth => false)
+            @objects.each do |obj|
+              obj.send("#{@action.class.meth}=", false)
+              obj.save!
+            end
             redirect_to :back
           end
         end
