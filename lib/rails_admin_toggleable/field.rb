@@ -15,19 +15,41 @@ module RailsAdmin
           end
 
           register_instance_option :pretty_value do
+            def g_js
+              <<-END.strip_heredoc.gsub("\n", ' ').gsub(/ +/, ' ')
+                var $t = $(this);
+                $t.html("<i class='fa fa-spinner fa-spin'></i>");
+                $.ajax({
+                  type: "POST",
+                  url: $t.attr("href"),
+                  data: {ajax:true},
+                  success: function(r) {
+                    $t.attr("href", r.href);
+                    $t.attr("class", r.class);
+                    $t.text(r.text);
+                    $t.parent().attr("title", r.text);
+                    $t.siblings(".toggle-btn").remove();
+                  },
+                  error: function(e) {
+                    alert(e.responseText);
+                  }
+                });
+                return false;
+              END
+            end
             def g_link(fv, on, badge)
               bindings[:view].link_to(
                 fv.html_safe,
                 toggle_path(model_name: @abstract_model, id: bindings[:object].id, method: name, on: on.to_s),
                 # method: :post,
-                class: 'label ' + badge,
-                onclick: 'var $t = $(this); $t.html("<i class=\"fa fa-spinner fa-spin\"></i>"); $.ajax({type: "POST", url: $t.attr("href"), data: {ajax:true}, success: function(r) { $t.attr("href", r.href); $t.attr("class", r.class); $t.text(r.text); $t.parent().attr("title", r.text); }, error: function(e) { alert(e.responseText); }}); return false;'
+                class: 'toggle-btn label ' + badge,
+                onclick: g_js
               )
             end
 
             case value
               when nil
-                g_link('✘', 0, 'label-danger') + g_link('✓', 1, 'label-success')
+                g_link('✘', 0, 'label-danger') + ' ' + g_link('✓', 1, 'label-success')
               when false
                 g_link('✘', 1, 'label-danger')
               when true
