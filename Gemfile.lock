@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rails_admin_toggleable (0.7.0)
+    rails_admin_toggleable (0.7.1)
       rails_admin
 
 GEM
