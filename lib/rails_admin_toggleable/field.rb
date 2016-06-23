@@ -15,7 +15,7 @@ module RailsAdmin
           end
 
           def type
-            'boolean'
+            :boolean
           end
 
           register_instance_option :pretty_value do
