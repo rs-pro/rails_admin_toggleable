@@ -14,6 +14,10 @@ module RailsAdmin
             :check_box
           end
 
+          def type
+            'boolean'
+          end
+
           register_instance_option :pretty_value do
             def g_js
               <<-END.strip_heredoc.gsub("\n", ' ').gsub(/ +/, ' ')
