@@ -44,7 +44,7 @@ module RailsAdmin
             def g_link(fv, on, badge)
               bindings[:view].link_to(
                 fv.html_safe,
-                toggle_path(model_name: @abstract_model, id: bindings[:object].id, method: name, on: on.to_s),
+                bindings[:view].toggle_path(model_name: @abstract_model, id: bindings[:object].id, method: name, on: on.to_s),
                 # method: :post,
                 class: 'toggle-btn label ' + badge,
                 onclick: g_js
