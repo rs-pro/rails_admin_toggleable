@@ -53,6 +53,7 @@ module RailsAdmin
                 options[:onclick] = g_js
               else
                 options[:method] = :post
+                options[:onclick] = "$(this).html(\"<i class='fa fa-spinner fa-spin'></i>\");"
               end
 
               bindings[:view].link_to(
