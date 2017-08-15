@@ -30,7 +30,7 @@ module RailsAdmin
             end
             if params['id'].present?
               begin
-                @object = @abstract_model.model.unscoped.find(params['id'])
+                @object = @abstract_model.model.unscoped.lock.find(params['id'])
                 @meth = params[:method]
                 @object.send(@meth + '=', params[:on] == '1' ? true : false)
                 if @object.save
