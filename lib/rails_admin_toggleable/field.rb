@@ -18,6 +18,10 @@ module RailsAdmin
             :boolean
           end
 
+          register_instance_option :ajax do
+            true
+          end
+
           register_instance_option :pretty_value do
             def g_js
               <<-END.strip_heredoc.gsub("\n", ' ').gsub(/ +/, ' ')
@@ -41,13 +45,21 @@ module RailsAdmin
                 return false;
               END
             end
+
             def g_link(fv, on, badge)
+              options = { class: 'toggle-btn label ' + badge }
+
+              if self.ajax
+                options[:onclick] = g_js
+              else
+                options[:method] = :post
+                options[:onclick] = "$(this).html(\"<i class='fa fa-spinner fa-spin'></i>\");"
+              end
+
               bindings[:view].link_to(
                 fv.html_safe,
                 toggle_path(model_name: @abstract_model, id: bindings[:object].id, method: name, on: on.to_s),
-                # method: :post,
-                class: 'toggle-btn label ' + badge,
-                onclick: g_js
+                options
               )
             end
 
