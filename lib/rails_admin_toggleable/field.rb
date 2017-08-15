@@ -58,7 +58,7 @@ module RailsAdmin
 
               bindings[:view].link_to(
                 fv.html_safe,
-                toggle_path(model_name: @abstract_model, id: bindings[:object].id, method: name, on: on.to_s),
+                bindings[:view].toggle_path(model_name: @abstract_model, id: bindings[:object].id, method: name, on: on.to_s),
                 options
               )
             end
