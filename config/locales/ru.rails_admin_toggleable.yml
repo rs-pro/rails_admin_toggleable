@@ -20,4 +20,4 @@ ru:
       disabled: '"%{attr}" выключен'
       error: "Ошибка: %{err}"
       no_id: "Не указан ID"
-      
+
