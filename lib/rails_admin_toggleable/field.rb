@@ -26,6 +26,7 @@ module RailsAdmin
             def g_js
               <<-END.strip_heredoc.gsub("\n", ' ').gsub(/ +/, ' ')
                 var $t = $(this);
+                var old_html = $t.html();
                 $t.html("<i class='fa fa-spinner fa-spin'></i>");
                 $.ajax({
                   type: "POST",
@@ -39,6 +40,7 @@ module RailsAdmin
                     $t.siblings(".toggle-btn").remove();
                   },
                   error: function(e) {
+                    $t.html(old_html);
                     alert(e.responseText);
                   }
                 });
