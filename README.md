@@ -1,5 +1,9 @@
 # RailsAdminToggleable
 
+Master repository has moved to gitlab, all new code will be there:
+
+https://gitlab.com/rocket-science/rails_admin_toggleable
+
 Make any boolean field easily toggleable on\off from index view in rails admin
 
 ## Installation
